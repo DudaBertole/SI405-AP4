@@ -74,6 +74,10 @@ public class OrderItem {
         }
         return totalPrice;
     }
+// TODO
+// O Problema: O método getTotalPrice(), que aparenta ser apenas um acessor (getter) para resgatar uma informação, altera o estado interno da classe ao disparar a rotina de atualização updateTotalPrice().
+// Por que é um Code Smell: No Clean Code, métodos com o prefixo get instintivamente indicam ausência de efeitos colaterais. Quem chama um get() não espera mutação no objeto.
+// Relação Clean Code / SOLID: Isso fere frontalmente o Command Query Separation (CQS), que estipula que um método deve ser um Comando (que muda o estado) ou uma Consulta (que retorna dados), nunca ambos ao mesmo tempo.
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;

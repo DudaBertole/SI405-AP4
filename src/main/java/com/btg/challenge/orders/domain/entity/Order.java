@@ -84,6 +84,10 @@ public class Order {
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
+// TODO
+// O Problema: A entidade de domínio expõe setters públicos para atributos que deveriam ser restritos à lógica interna de cálculo, como totalAmount ou totalPrice.
+// Por que é um Code Smell: Qualquer camada da aplicação (um controller ou um mapper) pode arbitrariamente chamar order.setTotalAmount(new BigDecimal("99999")), quebrando completamente a consistência matemática do pedido, já que a soma dos itens não baterá com este valor manual.
+// Relação Clean Code / SOLID: Viola o pilar de Encapsulamento da Programação Orientada a Objetos e fere indiretamente o Open-Closed Principle (OCP) (as regras de cálculo do domínio perdem seu poder). Entidades ricas de domínio devem expor ações e comportamentos (calculateTotals()), enquanto propriedades geradas não deveriam ter "setters" públicos arbitrários.
 
     public Integer getItemsCount() {
         return itemsCount;

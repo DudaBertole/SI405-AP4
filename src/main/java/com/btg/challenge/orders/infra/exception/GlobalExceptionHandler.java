@@ -17,6 +17,11 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+//TODO
+// O Problema: A lógica de formatar a URI da requisição chamando request.getDescription(false).replace("uri=", "") se repete de forma idêntica em todos os manipuladores de exceção da classe.
+// Por que é um Code Smell: Fere o princípio DRY (Don't Repeat Yourself) do Clean Code. Se a estrutura de como extrair a URL da requisição mudar, ou se você decidir usar uma classe nativa do Spring para pegar o path diretamente, será necessário atualizar diversos métodos espalhados na classe (Shotgun Surgery).
+// Relação Clean Code / SOLID: O ideal seria que a criação da resposta padronizada e a extração do path ocorressem dentro do próprio método utilitário createErrorResponse.
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
